@@ -46,4 +46,13 @@ class User extends Authenticatable
 {
    $this->attributes['password'] = bcrypt($value);
 }
+
+public function restautants(){
+    return $this->hasMany(Restaurant::class,'user_id','id');
+
+}
+public function reviews(){
+    return $this->hasMany(Review::class,'user_id','id');
+
+}
 }
