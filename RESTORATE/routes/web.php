@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RestaurantOwnerController
+;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +23,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/restaurants', [RestaurantOwnerController::class, 'index'])->middleware(['auth'])->name('restaurants');
 
 require __DIR__.'/auth.php';

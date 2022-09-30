@@ -1,16 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Interfaces\RestaurantOwnerInterface;
 
 use Illuminate\Http\Request;
 
 class RestaurantOwnerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+       private RestaurantOwnerInterface $RestaurantOwnerRepository;
+       public function __construct(RestaurantOwnerInterface $RestaurantOwnerRepository)
+    {
+        $this->RestaurantOwnerRepository = $RestaurantOwnerRepository;
+
+    }
+
     public function index()
     {
         //
