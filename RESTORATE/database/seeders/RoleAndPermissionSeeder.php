@@ -31,7 +31,6 @@ class RoleAndPermissionSeeder extends Seeder
 
         $adminRole = Role::create(['name' => 'Restaurateur']);
         $clientRole = Role::create(['name' => 'Client']);
-        $publicRole = Role::create(['name' => 'Public']);
 
         $adminRole->givePermissionTo([
             'create-restaurants',
@@ -54,9 +53,6 @@ class RoleAndPermissionSeeder extends Seeder
             'delete-reviews',
             'show-reviews',
         ]);
-        $publicRole->givePermissionTo([
-
-            'show-restaurants',
-        ]);
+       
     }
 }
