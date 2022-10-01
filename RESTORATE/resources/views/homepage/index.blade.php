@@ -226,9 +226,11 @@ font-family: 'EB Garamond', serif;
                     @endauth
                 </div>
             @endif
+            
             <form action="{{ route('homepage') }}" method="GET" role="search">
 
 <div>
+    
 <div class="input-group">
     <span class="input-group-btn mr-5 mt-1">
         <button class="btn btn-info" type="submit" title="Search projects">
@@ -248,7 +250,8 @@ font-family: 'EB Garamond', serif;
  <div id="containers">
             @if(!empty($restaurants))
                             @foreach($restaurants as $restaurant)
-          <div id="container">	
+                             <div id="container">	
+                             <a href="{{ route('homepage.show', $restaurant->id) }}"> 
 	
 	<div class="product-details">
     
@@ -264,6 +267,8 @@ font-family: 'EB Garamond', serif;
 		
 			<p class="information">Restaurateur : {{$restaurant->user->name}}</p>
             <p class="information">Note moyenne : A faire</p>
+            <p class="information">Voir Details</p>
+
 
 		
 		
@@ -303,8 +308,9 @@ font-family: 'EB Garamond', serif;
 @endforeach @endif
 
 
-           
+</a>           
 </div>
+
 </div>
                
     </body>

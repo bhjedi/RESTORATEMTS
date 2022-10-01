@@ -22,6 +22,11 @@
                         {{ __('Restaurants') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('homepage')" :active="request()->routeIs('restaurants')">
+                        {{ __('Home Page') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

@@ -11,7 +11,7 @@ class Restaurant extends Model
     protected $fillable = [
         "name", 
         "user_id",
-         "city_id",
+        "city_id",
         
     ];
     public function user(){
@@ -36,6 +36,7 @@ class Restaurant extends Model
         return $this->with(["city","user","medias","reviews"])->latest()->paginate(10); 
             
     }
+
     public function getRestautFiltred(string $search=null): LengthAwarePaginator
     {
         
@@ -47,6 +48,16 @@ class Restaurant extends Model
     public function getCity(): LengthAwarePaginator
     {
         return City::paginate(10); 
+            
+    }
+
+    
+    public function getRestaurantDetail($id)
+    {
+        
+        
+        
+        return $this->where("id",$id)->with(["city","user","medias","reviews"])->get(); 
             
     }
     

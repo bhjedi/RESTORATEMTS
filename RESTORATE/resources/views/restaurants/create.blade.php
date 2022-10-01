@@ -35,7 +35,8 @@
        <label for="avatar">Choisir a restaurant image:</label>
 
 <input type="file"
-       id="image" name="image"
+multiple 
+       id="image" name="images[]"
        accept="image/png, image/jpeg"><br/>
 
                     @error('name') <span class="text-red-500">{{ $message }}

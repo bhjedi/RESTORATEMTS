@@ -37,10 +37,9 @@ class RestaurantOwnerController extends Controller
 
     public function store(Request $request,Restaurant $restaurant)
     {
-        
         $request->validate([
             'name' => 'required|min:5',
-            'image' => 'required',
+            'images' => 'required',
         ]);
   
         $restaurants= $this->RestaurantOwnerRepository->create($request->all());

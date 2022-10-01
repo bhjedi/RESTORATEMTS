@@ -3,6 +3,7 @@
 namespace App\Repositories;
 use App\Models\Restaurant;
 use App\Models\Media;
+use App\Models\Review;
 
 
 use App\Interfaces\RestaurantOwnerInterface;
@@ -30,6 +31,17 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
     {
         return isset($request["search"]);
     }
+    public function addReview(array $data)
+ {
+   $rewiew= Review::create([
+    "note" => $data["note"],
+    "message" => $data["message"],
+    "restaurant_id" => $data["restaurant_id"],
+    "user_id"=>Auth::id()
+]);
+
+      
+ }
 
 
     public function create(array $data)
@@ -40,35 +52,38 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
                 "user_id"=> Auth::id(),
                  "city_id"=>1
              ]);
-            $this->SaveRestaurantImageInPublicFolder($data['image'],$restaurant->id);
+            $this->SaveRestaurantImageInPublicFolder($data['images'],$restaurant->id);
 
             return $restaurant;
       
     }
-    protected function SaveRestaurantImageInPublicFolder($image,$id)
+    protected function SaveRestaurantImageInPublicFolder($images,$id)
     {
-       
-            $filename= date('YmdHi').$image->getClientOriginalName();
-            $this->SaveRestaurantImageToPublic($image,$filename);
-            $this->SaveRestaurantImage($filename,$id);
+           $this->SaveRestaurantImageToPublic($images,$id);
+            
     }
    
 
-    protected function SaveRestaurantImage(string $image,$id)
+    protected function SaveRestaurantImage(string $filename,$id)
     {
        
        
         Media::create([
             'restaurant_id'=>$id,
-            'image'=>$image,
+            'image'=>$filename,
            
         ]);
     }
-    protected function SaveRestaurantImageToPublic($image,$filename)
+    protected function SaveRestaurantImageToPublic($images,$id)
     {
+       foreach($images as $image){
+
        
-       
+        $filename= date('YmdHi').$image->getClientOriginalName();
         $image->move(public_path('public/Image'), $filename);
+        $this->SaveRestaurantImage($filename,$id);
+    }
+   
     }
 
     public function getCity()
@@ -76,6 +91,12 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
        
         return $this->model->getCity();
     }
+
+    public function find($id)
+     {
+        
+         return $this->model->getRestaurantDetail($id);
+     }
   
 
 }
