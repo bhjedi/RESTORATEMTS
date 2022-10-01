@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RestaurantOwnerController
-;
+use App\Http\Controllers\RestaurantOwnerController;
+use App\Http\Controllers\HomepageController;
+
+
+
 
 
 /*
@@ -16,9 +19,7 @@ use App\Http\Controllers\RestaurantOwnerController
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomepageController::class,'getRestaurant']);
 
 
  Route::group(['middleware'=>'auth'], function () {

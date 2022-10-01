@@ -5,7 +5,6 @@ use App\Interfaces\RestaurantOwnerInterface;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
-use App\Models\City;
 
 
 class RestaurantOwnerController extends Controller
