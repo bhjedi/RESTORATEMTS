@@ -11,7 +11,7 @@ class Media extends Model
    
     protected $fillable = [
         "image", 
-        "restaurant_id,",
+        "restaurant_id",
          
         
     ];

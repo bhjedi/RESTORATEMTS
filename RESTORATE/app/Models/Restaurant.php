@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 class Restaurant extends Model
 {
     use HasFactory;
@@ -30,5 +30,13 @@ class Restaurant extends Model
         return $this->belongsTo(Review::class,'restaurant_id','id');
 
     }
+
+    public function getRestaut(): LengthAwarePaginator
+    {
+        return $this->with(["city","user","medias"])->latest()->paginate(10); 
+            
+    }
+   
+
     
 }

@@ -14,6 +14,7 @@ use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
+    
     /**
      * Register services.
      *
@@ -22,7 +23,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(BaseRepositoryInterface::class, BaseRepository::class);
-        $this->app->bind(RestaurantCustomerRepository::class, RestaurantCustomerInterface::class);
+        $this->app->bind(RestaurantCustomerInterface::class,RestaurantCustomerRepository::class);
         $this->app->bind(RestaurantOwnerInterface::class, RestaurantOwnerRepository::class);
 
     }
