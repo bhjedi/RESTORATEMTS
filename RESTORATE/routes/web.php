@@ -19,7 +19,7 @@ use App\Http\Controllers\HomepageController;
 |
 */
 
-Route::get('/', [HomepageController::class,'getRestaurant']);
+Route::get('/', [HomepageController::class,'getRestaurant'])->name('homepage');
 
 
  Route::group(['middleware'=>'auth'], function () {

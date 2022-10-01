@@ -21,10 +21,14 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
     }
 
 
-    public function all()
+    public function all(object $request=null)
     {
        
-        return $this->model->getRestaut();
+        return $this->isVerifiedSearch($request)?$this->model->getRestautFiltred($request["search"]):$this->model->getRestaut();
+    }
+    protected function isVerifiedSearch(object $request=null): bool
+    {
+        return isset($request["search"]);
     }
 
 

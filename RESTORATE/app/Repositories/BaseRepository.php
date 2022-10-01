@@ -15,10 +15,10 @@ class BaseRepository implements BaseRepositoryInterface
      {
          $this->model = $model;
      }
-     public function all()
+     public function all(object $request=null)
      {
     
-         return $this->model->all();
+         return $this->model->all($request);
      }
  
      public function create(array $data)

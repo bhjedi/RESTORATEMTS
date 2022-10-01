@@ -14,10 +14,12 @@ class HomepageController extends Controller
 
  }
 
- public function getRestaurant()
+ public function getRestaurant(Request $request)
  {
     
-     $restaurants= $this->RestaurantOwnerRepository->all();
+    
+     $restaurants= $this->RestaurantOwnerRepository->all($request);
+     
     
      
     

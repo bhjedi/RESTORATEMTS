@@ -12,7 +12,7 @@ class Review extends Model
         "message,", 
         "note,",
         "user_id",
-        "restaurant _id,"
+        "restaurant _id"
          
          
         

@@ -226,11 +226,29 @@ font-family: 'EB Garamond', serif;
                     @endauth
                 </div>
             @endif
+            <form action="{{ route('homepage') }}" method="GET" role="search">
+
+<div>
+<div class="input-group">
+    <span class="input-group-btn mr-5 mt-1">
+        <button class="btn btn-info" type="submit" title="Search projects">
+            <span class="fas fa-search"></span>
+        </button>
+    </span>
+    <input type="text" class="form-control mr-2" name="search" placeholder="Search Restaurant" id="search">
+    <a href="{{ route('homepage') }}" class=" mt-1">
+        <span class="input-group-btn">
+            <button class="btn btn-danger" type="button" title="Refresh page">
+                <span class="fas fa-sync-alt"></span>
+            </button>
+        </span>
+    </a>
+</div>
+</form>
  <div id="containers">
             @if(!empty($restaurants))
                             @foreach($restaurants as $restaurant)
           <div id="container">	
-         	
 	
 	<div class="product-details">
     
@@ -244,7 +262,8 @@ font-family: 'EB Garamond', serif;
 		<i class="fa fa-star-o" aria-hidden="true"></i>
 	</span>
 		
-			<p class="information">" Let's spread the joy , here is Christmas , the most awaited day of the year.Christmas Tree is what one need the most. Here is the correct tree which will enhance your Christmas.</p>
+			<p class="information">Restaurateur : {{$restaurant->user->name}}</p>
+            <p class="information">Note moyenne : A faire</p>
 
 		
 		
@@ -257,19 +276,24 @@ font-family: 'EB Garamond', serif;
 </div>
 			
 </div>
+
+
 	
 <div class="product-image">
-	
-	<img src="https://images.unsplash.com/photo-1606830733744-0ad778449672?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mzl8fGNocmlzdG1hcyUyMHRyZWV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
-	
+    @if(!empty($restaurant->medias))
+    @foreach ($restaurant->medias as $image )
+    <img src="{{url('/Image/'.$image)}}" alt="Image"/>@endforeach @endif
+
 
 <div class="info">
-	<h2> Description</h2>
+	<h2> Review</h2>
 	<ul>
-		<li><strong>Height : </strong>5 Ft </li>
-		<li><strong>Shade : </strong>Olive green</li>
-		<li><strong>Decoration: </strong>balls and bells</li>
-		<li><strong>Material: </strong>Eco-Friendly</li>
+        @if(!empty($restaurant->reviews))
+        @foreach ($restaurant->reviews as $review )
+
+		<li><strong>{{$review->message}} </strong> </li>
+        @endforeach @endif
+		
 		
 	</ul>
 </div>
@@ -280,6 +304,7 @@ font-family: 'EB Garamond', serif;
 
 
            
+</div>
 </div>
                
     </body>

@@ -27,7 +27,7 @@ class Restaurant extends Model
 
     }
     public function reviews(){
-        return $this->belongsTo(Review::class,'restaurant_id','id');
+        return $this->hasMany(Review::class,'restaurant_id','id');
 
     }
 
@@ -36,11 +36,20 @@ class Restaurant extends Model
         return $this->with(["city","user","medias","reviews"])->latest()->paginate(10); 
             
     }
+    public function getRestautFiltred(string $search=null): LengthAwarePaginator
+    {
+        
+        return $this->with(["city","user","medias","reviews"])->whereHas('city',function($q) use($search){
+            $q->where('name', 'like', '%' . $search . '%');
+        })->latest()->paginate(10); 
+            
+    }
     public function getCity(): LengthAwarePaginator
     {
         return City::paginate(10); 
             
     }
+    
    
 
     
