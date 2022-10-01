@@ -33,7 +33,12 @@ class Restaurant extends Model
 
     public function getRestaut(): LengthAwarePaginator
     {
-        return $this->with(["city","user","medias"])->latest()->paginate(10); 
+        return $this->with(["city","user","medias","reviews"])->latest()->paginate(10); 
+            
+    }
+    public function getCity(): LengthAwarePaginator
+    {
+        return City::paginate(10); 
             
     }
    

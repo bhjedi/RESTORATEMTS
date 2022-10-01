@@ -28,11 +28,12 @@ class RestaurantOwnerController extends Controller
     }
     
    
-    public function create(City $cities)
+    public function create(Restaurant $restaurant)
     {
-        // $cities = City::paginate(10);
+        
+       $cities= $this->RestaurantOwnerRepository->getCity();
        
-        return view('restaurants.create');
+        return view('restaurants.create',compact('cities'));
     }
 
     public function store(Request $request,Restaurant $restaurant)

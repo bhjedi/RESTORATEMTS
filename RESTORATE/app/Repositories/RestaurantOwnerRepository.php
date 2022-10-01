@@ -41,19 +41,14 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
             return $restaurant;
       
     }
-    protected function SaveRestaurantImageInPublicFolder( $image,$id)
+    protected function SaveRestaurantImageInPublicFolder($image,$id)
     {
        
             $filename= date('YmdHi').$image->getClientOriginalName();
-            $this>moveImageToPublicPath($image,$filename);
+            $this->SaveRestaurantImageToPublic($image,$filename);
             $this->SaveRestaurantImage($filename,$id);
     }
-    protected function moveImageToPublicPath( $image,$filename)
-    {
-       
-        $image->move(public_path('public/Image'), $filename);
-        
-    }
+   
 
     protected function SaveRestaurantImage(string $image,$id)
     {
@@ -65,7 +60,18 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
            
         ]);
     }
+    protected function SaveRestaurantImageToPublic($image,$filename)
+    {
+       
+       
+        $image->move(public_path('public/Image'), $filename);
+    }
 
+    public function getCity()
+    {
+       
+        return $this->model->getCity();
+    }
   
 
 }
