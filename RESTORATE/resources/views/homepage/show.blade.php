@@ -632,31 +632,25 @@ h2 {
     <div class = "product-imgs">
       <div class = "img-display">
         <div class = "img-showcase">
-          <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt = "shoe image">
-          <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt = "shoe image">
-          <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt = "shoe image">
+        @if(!empty($restaurant[0]->medias))
+   
+	<img src="{{url('public/Image/'.$restaurant[0]->medias[0]->image)}}" alt="Image"/>
+ @endif
         </div>
       </div>
 
       <div class = "img-select">
-        <div class = "img-item">
-          <a href = "#" data-id = "1">
-            <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt = "shoe image">
-          </a>
-        </div>
+        
         <div class = "img-item">
           <a href = "#" data-id = "2">
-            <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg" alt = "shoe image">
           </a>
         </div>
         <div class = "img-item">
           <a href = "#" data-id = "3">
-            <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt = "shoe image">
           </a>
         </div>
         <div class = "img-item">
           <a href = "#" data-id = "4">
-            <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg" alt = "shoe image">
           </a>
         </div>
       </div>

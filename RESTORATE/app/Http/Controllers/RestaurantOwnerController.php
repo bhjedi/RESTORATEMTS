@@ -76,6 +76,7 @@ class RestaurantOwnerController extends Controller
     public function show(Restaurant $restaurant)
     {
         $this->checkIfRestaurateurRole($restaurant);
+      
 
         return view('restaurants.show', compact('restaurant'));
     }

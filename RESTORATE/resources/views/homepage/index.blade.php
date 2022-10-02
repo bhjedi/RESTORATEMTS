@@ -287,7 +287,8 @@ font-family: 'EB Garamond', serif;
 <div class="product-image">
     @if(!empty($restaurant->medias))
     @foreach ($restaurant->medias as $image )
-    <img src="{{storage_path('app/public/Image/').$image->image }}" alt="Image"/>@endforeach @endif
+	<img src="{{url('public/Image/'.$restaurant->medias[0]->image)}}" alt="Image"/>
+@endforeach @endif
 	
 
 
