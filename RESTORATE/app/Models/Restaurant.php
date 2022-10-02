@@ -37,6 +37,7 @@ class Restaurant extends Model
         return $this->with(["city","user","medias","reviews"])->latest()->paginate(10); 
             
     }
+   
     
     public function getRestautByOwner(): LengthAwarePaginator
     {

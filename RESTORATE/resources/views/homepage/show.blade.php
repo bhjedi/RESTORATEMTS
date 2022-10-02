@@ -663,7 +663,7 @@ h2 {
       <div class = "product-rating">
       <span>{{$restaurant[0]->name}} </span> <br />
        
-        <span>4.7(21) Moyenne du restaut </span>
+        <span>{{$restaurant[0]->reviews->avg('note')}}(10) Moyenne du restautant </span>
       </div>
 
       
@@ -710,8 +710,9 @@ h2 {
      @if($restaurant[0]->reviews) @foreach($restaurant[0]->reviews as $review)
      <b>{{$review->note}} ({{$restaurant[0]->user->name}})  <form action="{{ route('homepage.delete') }}" method="GET" enctype="multipart/form-data" >
      <input type="hidden" class="tag form-control" name="review_id" id="inlineFormInputName" value="{{ $review->id }}" placeholder=" Repondre">
-     <input type="hidden" class="tag form-control" name="user_id" id="inlineFormInputName" value="{{ $restaurant[0]->user_id }}" placeholder=" Repondre">
+     <input type="hidden" class="tag form-control" name="user_id" id="inlineFormInputName" value="{{ $review->user_id }}" placeholder=" Repondre">
 
+     <input type="hidden" class="tag form-control" name="answer_user_id" id="inlineFormInputName" value="{{ $restaurant[0]->user_id }}" placeholder=" Repondre">
 
 <button type="submit"
            class="inline-flex items-center px-4 py-2 my-3 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25">

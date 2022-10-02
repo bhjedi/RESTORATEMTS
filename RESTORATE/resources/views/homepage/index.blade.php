@@ -266,7 +266,7 @@ font-family: 'EB Garamond', serif;
 	</span>
 		
 			<p class="information">Restaurateur : {{$restaurant->user->name}}</p>
-            <p class="information">Note moyenne : A faire</p>
+            <p class="information">Note moyenne : {{$restaurant->reviews->avg('note')}}</p>
             <p class="information">Voir Details</p>
 
 

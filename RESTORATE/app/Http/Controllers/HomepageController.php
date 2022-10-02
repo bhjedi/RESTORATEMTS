@@ -17,15 +17,12 @@ class HomepageController extends Controller
 
  }
 
- public function getRestaurant(Request $request)
+ public function getRestaurant(Request $request,Restaurant $restaurant)
  {
-    
     
      $restaurants= $this->RestaurantOwnerRepository->getRestau($request);
      
-    
      
-    
     return  view('homepage.index', compact('restaurants'));
  }
 
@@ -69,7 +66,7 @@ class HomepageController extends Controller
  public function answerNote(Request $request,User $user)
  {
   
-  $user->chekIfReviewBelongToUser($request->user_id);
+   $user->chekIfReviewBelongToUser($request->answer_user_id);
    $restaurant= $this->RestaurantOwnerRepository->answerNote($request->all());
 
        
