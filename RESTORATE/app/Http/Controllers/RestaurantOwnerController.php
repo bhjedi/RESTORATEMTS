@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Interfaces\RestaurantOwnerInterface;
 use App\Models\Restaurant;
+use App\Models\User;
+
+
 use Illuminate\Http\Request;
 use Error;
 use Exception;
@@ -18,33 +21,28 @@ class RestaurantOwnerController extends Controller
 
     }
 
-    public function index(Restaurant $restaurant)
+
+
+    public function index(User $user)
     {
-      
-        
         $restaurants= $this->RestaurantOwnerRepository->all();
-       
-        
-       
-       return $restaurant->CheckIfAuthUserHaveRestaurateurRole()? view('restaurants.index', compact('restaurants')): abort(404);
+        return $user->CheckIfAuthUserHaveRestaurateurRole()? view('restaurants.index', compact('restaurants')): abort(404);
        
     }
     
    
-    public function create(Restaurant $restaurant)
+    public function create(User $user)
     {
-        $this->checkIfRestaurateurRole($restaurant);
+        $this->checkIfRestaurateurRole($user);
         
        $cities= $this->RestaurantOwnerRepository->getCity();
        
         return view('restaurants.create',compact('cities'));
     }
 
-    public function checkIfRestaurateurRole( $restaurant)
+    public function checkIfRestaurateurRole( $user)
     {
-        if(!$restaurant->CheckIfAuthUserHaveRestaurateurRole()) throw new Exception("Vous n'etest pas autoriser a faire cette action");
-        
-            
+        if(!$user->CheckIfAuthUserHaveRestaurateurRole()) throw new Exception("Vous n'etest pas autoriser a faire cette action");
          
     }
 
@@ -60,12 +58,9 @@ class RestaurantOwnerController extends Controller
   
         $restaurants= $this->RestaurantOwnerRepository->create($request->all());
         
-      
-  
         return redirect()->route('restaurants.index')
             ->with('success', 'Restaurant Created Successfully.');
   
-       
     }
   
     /**
@@ -77,18 +72,16 @@ class RestaurantOwnerController extends Controller
     {
         $this->checkIfRestaurateurRole($restaurant);
 
-      
-
         return view('restaurants.show', compact('restaurant'));
     }
+
+
     public function edit(Restaurant $restaurant)
     {
         $this->checkIfRestaurateurRole($restaurant);
         $cities= $this->RestaurantOwnerRepository->getCity();
 
-
-         
-        return view('restaurants.edit', compact('restaurant','cities'));
+       return view('restaurants.edit', compact('restaurant','cities'));
 
     }
   
@@ -108,8 +101,6 @@ class RestaurantOwnerController extends Controller
         ]);
   
         $this->RestaurantOwnerRepository->update($request->all(),$restaurant->id);
-       
-  
         
         return redirect()->route('restaurants.index')
         ->with('success', 'Restaurant Updated Successfully.');

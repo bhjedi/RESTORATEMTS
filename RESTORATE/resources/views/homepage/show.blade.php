@@ -721,7 +721,7 @@ h2 {
   @if(isset($authuserRole) && $authuserRole->roles[0]->name=="Restaurateur" && $restaurant[0]->user->id == $authuserRole->id  )   <form action="{{ route('homepage.answer') }}" method="GET" enctype="multipart/form-data" >
       
       <input type="hidden" class="tag form-control" name="review_id" id="inlineFormInputName" value="{{ $review->id }}" placeholder=" Repondre">
-      <input type="hidden" class="tag form-control" name="user_id" id="inlineFormInputName" value="{{ $restaurant[0]->user_id }}" placeholder=" Repondre">
+      <input type="hidden" class="tag form-control" name="answer_user_id" id="inlineFormInputName" value="{{ $restaurant[0]->user_id }}" placeholder=" Repondre">
 
      <input type="text" class="tag form-control" name="response" id="inlineFormInputName" placeholder=" Repondre">
 

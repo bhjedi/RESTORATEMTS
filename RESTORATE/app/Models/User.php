@@ -64,4 +64,25 @@ public function chekIfReviewBelongToUser($id){
 
 }
 
+public function getTheRoleNameOfAuthUser()
+{  
+    return auth()->user()  ;
+
+   
+}
+
+public function CheckIfAuthUserHaveRestaurateurRole()
+{  
+    return auth()->user()->hasRole('Restaurateur')  ;
+
+   
+}
+
+public function CheckIfAuthUserHaveCustomerRole()
+{  
+    return auth()->user()->hasRole('Client')  ;
+
+   
+}
+
 }

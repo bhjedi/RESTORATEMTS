@@ -18,25 +18,21 @@ class HomepageController extends Controller
  }
 
  public function getRestaurant(Request $request,Restaurant $restaurant)
- {
-    
+ {  
      $restaurants= $this->RestaurantOwnerRepository->getRestau($request);
-     
-     
-    return  view('homepage.index', compact('restaurants'));
+     return  view('homepage.index', compact('restaurants'));
  }
 
  
- public function show($id)
+ public function show($id,User $user)
  {
    
     $checkedAuth = false ; 
     $authuserRole = null;
     if( $this->checkIfAuthUser()){
       $checkedAuth = true ;
-      $authuserRole = Restaurant::getTheRoleNameOfAuthUser();
-     
-      
+      $authuserRole = $user->getTheRoleNameOfAuthUser();
+       
     }
     
     $restaurant= $this->RestaurantOwnerRepository->find($id);
@@ -65,7 +61,6 @@ class HomepageController extends Controller
  
  public function answerNote(Request $request,User $user)
  {
-  
    $user->chekIfReviewBelongToUser($request->answer_user_id);
    $restaurant= $this->RestaurantOwnerRepository->answerNote($request->all());
 
