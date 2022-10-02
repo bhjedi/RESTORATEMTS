@@ -56,7 +56,7 @@ public function reviews(){
 
 }
 
-public function chekIfReviewBelongToClient($id){
+public function chekIfReviewBelongToUser($id){
 
     if(auth()->user()!==$id) throw new Exception("Vous n'etest pas autoriser à faire cette action");
 

@@ -66,8 +66,9 @@ class HomepageController extends Controller
      return redirect()->back();
  }
  
- public function answerNote(Request $request)
+ public function answerNote(Request $request,User $user)
  {
+  $user->chekIfReviewBelongToClient($request->user_id);
    $restaurant= $this->RestaurantOwnerRepository->answerNote($request->all());
 
        
