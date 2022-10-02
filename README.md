@@ -21,8 +21,8 @@
 ### Run the database migrations (Set the database connection in .env before migrating)
 >php artisan migrate
 ### Generate fake data
->For the User :   please generate role befor users , php artisan db:seed --class=RoleAndPermissionSeeder ,  php artisan db:seed --class=UserTableSeeder   the first user is restaurateur , the second is client , the password for the authentification is restorate
->For City : php artisan db:seed --class=CityTableSeeder
+* >For the User :   please generate role befor users , php artisan db:seed --class=RoleAndPermissionSeeder ,  php artisan db:seed --class=UserTableSeeder   the first user is restaurateur , the second is client , the password for the authentification is restorate
+* >For City : php artisan db:seed --class=CityTableSeeder
 
 ### Start the local development server
 >php artisan serve
