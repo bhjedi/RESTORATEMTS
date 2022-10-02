@@ -3,7 +3,12 @@
  
  ## Installation
 
- Please check the official laravel installation guide for server requirements before you start. Official Documentation
+* Please check the official laravel installation guide for server requirements before you start. Official Documentation
+* PHP version : 7.4.26
+* Laravel Framework 8.83.24
+* you need to install composer 
+* you need to install nodejs
+ 
 
 ### Clone the repository
             >git clone https://github.com/bhjedi/RESTORATEMTS.git
@@ -21,7 +26,7 @@
 ### Run the database migrations (Set the database connection in .env before migrating)
 >php artisan migrate
 ### Generate fake data
-* >For the User :   please generate role befor users , php artisan db:seed --class=RoleAndPermissionSeeder ,  php artisan db:seed --class=UserTableSeeder   the first user is restaurateur , the second is client , the password for the authentification is restorate
+* >For the User :   please generate role befor users , php artisan db:seed --class=RoleAndPermissionSeeder ,  php artisan db:seed --class=UserTableSeeder   the first user roles  is restaurateur , the second is client , the password for the authentification is restorate
 * >For City : php artisan db:seed --class=CityTableSeeder
 
 ### Start the local development server
