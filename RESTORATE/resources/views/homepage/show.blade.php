@@ -710,7 +710,7 @@ h2 {
      @if($restaurant[0]->reviews) @foreach($restaurant[0]->reviews as $review)
      <b>{{$review->note}} ({{$restaurant[0]->user->name}})  <form action="{{ route('homepage.delete') }}" method="GET" enctype="multipart/form-data" >
      <input type="hidden" class="tag form-control" name="review_id" id="inlineFormInputName" value="{{ $review->id }}" placeholder=" Repondre">
-     <input type="hidden" class="tag form-control" name="user_id" id="inlineFormInputName" value="{{ $review->user_id }}" placeholder=" Repondre">
+     <input type="hidden" class="tag form-control" name="user_id" id="inlineFormInputName" value="{{ $restaurant[0]->user_id }}" placeholder=" Repondre">
 
 
 <button type="submit"

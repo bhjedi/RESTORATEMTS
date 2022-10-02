@@ -58,7 +58,7 @@ class HomepageController extends Controller
  
  public function deleteNoteByOwner(Request $request, User $user)
  {
-  $user->chekIfReviewBelongToClient($request->user_id);
+  $user->chekIfReviewBelongToUser($request->user_id);
    
    $restaurant= $this->RestaurantOwnerRepository->deleteNoteByOwner($request->all());
 
@@ -68,7 +68,8 @@ class HomepageController extends Controller
  
  public function answerNote(Request $request,User $user)
  {
-  $user->chekIfReviewBelongToClient($request->user_id);
+  
+  $user->chekIfReviewBelongToUser($request->user_id);
    $restaurant= $this->RestaurantOwnerRepository->answerNote($request->all());
 
        
