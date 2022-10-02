@@ -714,12 +714,27 @@ h2 {
      <br />
      <h4>Liste de note sur le restaurant</h4>
      @if($restaurant[0]->reviews) @foreach($restaurant[0]->reviews as $review)
-     <b>{{$review->note}} ({{$restaurant[0]->user->name}})</b>           
-     <form action="{{ route('homepage.delete','$note->id') }}" method="GET" enctype="multipart/form-data" >
+     <b>{{$review->note}} ({{$restaurant[0]->user->name}})  <form action="{{ route('homepage.delete') }}" method="GET" enctype="multipart/form-data" >
+     <input type="hidden" class="tag form-control" name="review_id" id="inlineFormInputName" value="{{ $review->id }}" placeholder=" Repondre">
+     <input type="hidden" class="tag form-control" name="user_id" id="inlineFormInputName" value="{{ $review->user_id }}" placeholder=" Repondre">
+
+
 <button type="submit"
+           class="inline-flex items-center px-4 py-2 my-3 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25">
+               Suprimmer 
+           </button></form> </b>  
+  @if(isset($authuserRole) && $authuserRole->roles[0]->name=="Restaurateur" && $restaurant[0]->user->id == $authuserRole->id  )   <form action="{{ route('homepage.answer') }}" method="GET" enctype="multipart/form-data" >
+      
+      <input type="hidden" class="tag form-control" name="review_id" id="inlineFormInputName" value="{{ $review->id }}" placeholder=" Repondre">
+     <input type="text" class="tag form-control" name="response" id="inlineFormInputName" placeholder=" Repondre">
+
+         <button type="submit"
                     class="inline-flex items-center px-4 py-2 my-3 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25">
-                        Suprimmer 
-                    </button></form> <br /> 
+                        Repondre 
+                    </button></form>  @endif
+
+            <p> Reponse : {{$review->response}} </p>
+                    
      @endforeach @endif 
 
     </div>

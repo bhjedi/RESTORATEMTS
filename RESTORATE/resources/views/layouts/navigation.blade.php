@@ -17,11 +17,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+              @if(Auth::user()->roles[0]->name=="Restaurateur")  <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('restaurants.index')" :active="request()->routeIs('restaurants')">
                         {{ __('Restaurants') }}
                     </x-nav-link>
-                </div>
+                </div>@endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('homepage')" :active="request()->routeIs('restaurants')">
                         {{ __('Home Page') }}

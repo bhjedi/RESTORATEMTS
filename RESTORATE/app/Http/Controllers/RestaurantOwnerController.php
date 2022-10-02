@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use App\Interfaces\RestaurantOwnerInterface;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
-
+use Error;
+use Exception;
 
 
 class RestaurantOwnerController extends Controller
@@ -17,26 +18,40 @@ class RestaurantOwnerController extends Controller
 
     }
 
-    public function index()
+    public function index(Restaurant $restaurant)
     {
+      
+        
         $restaurants= $this->RestaurantOwnerRepository->all();
        
         
        
-       return  view('restaurants.index', compact('restaurants'));
+       return $restaurant->CheckIfAuthUserHaveRestaurateurRole()? view('restaurants.index', compact('restaurants')): abort(404);
+       
     }
     
    
     public function create(Restaurant $restaurant)
     {
+        $this->checkIfRestaurateurRole($restaurant);
         
        $cities= $this->RestaurantOwnerRepository->getCity();
        
         return view('restaurants.create',compact('cities'));
     }
 
+    public function checkIfRestaurateurRole( $restaurant)
+    {
+        if(!$restaurant->CheckIfAuthUserHaveRestaurateurRole()) throw new Exception("Vous n'etest pas autoriser a faire cette action");
+        
+            
+         
+    }
+
     public function store(Request $request,Restaurant $restaurant)
     {
+        $this->checkIfRestaurateurRole($restaurant);
+
         $request->validate([
             'name' => 'required|min:5',
             'images' => 'required',
@@ -59,10 +74,14 @@ class RestaurantOwnerController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+        $this->checkIfRestaurateurRole($restaurant);
+
         return view('restaurants.show', compact('restaurant'));
     }
     public function edit(Restaurant $restaurant)
     {
+        $this->checkIfRestaurateurRole($restaurant);
+
          
         return view('restaurants.edit', compact('restaurant'));
 
@@ -77,6 +96,8 @@ class RestaurantOwnerController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
+        $this->checkIfRestaurateurRole($restaurant);
+
         $request->validate([
             'name' => 'required|min:5',
         ]);
@@ -89,13 +110,11 @@ class RestaurantOwnerController extends Controller
         ->with('success', 'Contact Updated Successfully.');
     }
    
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+   
     public function destroy(Restaurant $restaurant)
     {
+        $this->checkIfRestaurateurRole($restaurant);
+
         $this->RestaurantOwnerRepository->delete($restaurant->id);
        
         session()->flash('message', 'Post Deleted Successfully.');

@@ -20,7 +20,11 @@
                     </div>
                 </div>
                 @endif
+                @if (session('error'))
+<div class="alert alert-danger">{{ session('error') }}</div>
+@endif
                 <br></br>
+                
                 <table class="w-full table-fixed">
                     <thead>
                         <tr class="bg-gray-100">

@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Restaurant;
 use App\Models\Media;
 use App\Models\Review;
+use App\Models\User;
 
 
 use App\Interfaces\RestaurantOwnerInterface;
@@ -22,18 +23,38 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
     }
 
 
-    public function all(object $request=null)
+    public function all()
+    {
+        
+           
+           
+                return $this->model->getRestaut();
+            
+
+
+           
+       
+       
+           
+    }
+    
+    public function getRestau(object $request=null)
     {
        
         return $this->isVerifiedSearch($request)?$this->model->getRestautFiltred($request["search"]):$this->model->getRestaut();
     }
+
     protected function isVerifiedSearch(object $request=null): bool
     {
         return isset($request["search"]);
     }
-    public function addReview(array $data)
+
+
+    
+
+ public function addReview(array $data)
  {
-   $rewiew= Review::create([
+    Review::create([
     "note" => $data["note"],
     "message" => $data["message"],
     "restaurant_id" => $data["restaurant_id"],
@@ -42,7 +63,13 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
 
       
  }
-
+ 
+ public function deleteNoteByOwner(array $data)
+    {
+       
+        return Review::destroy($data['review_id']);
+      
+    }
 
     public function create(array $data)
     {
@@ -97,6 +124,17 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
         
          return $this->model->getRestaurantDetail($id);
      }
+     public function answerNote(array $data)
+     {
+        $review=Review::find($data['review_id']);
+        $review->update([
+            "response"=>$data['response'],
+        ]);
+     }
+
+    
+
+     
   
 
 }

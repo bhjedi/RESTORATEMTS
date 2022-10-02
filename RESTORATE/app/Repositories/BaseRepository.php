@@ -15,7 +15,7 @@ class BaseRepository implements BaseRepositoryInterface
      {
          $this->model = $model;
      }
-     public function all(object $request=null)
+     public function all()
      {
     
          return $this->model->all($request);

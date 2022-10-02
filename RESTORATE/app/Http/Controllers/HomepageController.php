@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 use App\Interfaces\RestaurantOwnerInterface;
 use App\Models\Restaurant;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Auth;
 class HomepageController extends Controller
 {
-    protected $checkedAuth = false ;
+    protected $authuserRole  ;
     private RestaurantOwnerInterface $RestaurantOwnerRepository;
     public function __construct(RestaurantOwnerInterface $RestaurantOwnerRepository)
  {
@@ -19,22 +21,30 @@ class HomepageController extends Controller
  {
     
     
-     $restaurants= $this->RestaurantOwnerRepository->all($request);
+     $restaurants= $this->RestaurantOwnerRepository->getRestau($request);
      
     
      
     
     return  view('homepage.index', compact('restaurants'));
  }
+
  
  public function show($id)
  {
    
     $checkedAuth = false ; 
-    $this->checkIfAuthUser() && $checkedAuth = true ;
-      $restaurant= $this->RestaurantOwnerRepository->find($id);
+    $authuserRole = null;
+    if( $this->checkIfAuthUser()){
+      $checkedAuth = true ;
+      $authuserRole = Restaurant::getTheRoleNameOfAuthUser();
+     
+      
+    }
+    
+    $restaurant= $this->RestaurantOwnerRepository->find($id);
        
-     return view('homepage.show', compact('restaurant','checkedAuth'));
+     return view('homepage.show', compact('restaurant','checkedAuth','authuserRole'));
  }
  
  public function addReview(Request $request)
@@ -46,10 +56,19 @@ class HomepageController extends Controller
      return redirect()->back();
  }
  
- public function deleteNoteByOwner($id)
+ public function deleteNoteByOwner(Request $request, User $user)
  {
-    
-   $restaurant= $this->RestaurantOwnerRepository->deleteNoteByOwner($id);
+  $user->chekIfReviewBelongToClient($request->user_id);
+   
+   $restaurant= $this->RestaurantOwnerRepository->deleteNoteByOwner($request->all());
+
+       
+     return redirect()->back();
+ }
+ 
+ public function answerNote(Request $request)
+ {
+   $restaurant= $this->RestaurantOwnerRepository->answerNote($request->all());
 
        
      return redirect()->back();

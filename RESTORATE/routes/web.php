@@ -22,7 +22,9 @@ use App\Http\Controllers\HomepageController;
 Route::get('/', [HomepageController::class,'getRestaurant'])->name('homepage');
 Route::get('/restaurantDetails/{id}', [HomepageController::class,'show'])->name('homepage.show');
 Route::get('/restaurantDetails', [HomepageController::class,'addReview'])->middleware('auth')->name('homepage.addReview');
-Route::get('/restaurantRemoveNote/{id}', [HomepageController::class,'deleteNoteByOwner'])->middleware('auth')->name('homepage.delete');
+Route::get('/restaurantRemoveNote', [HomepageController::class,'deleteNoteByOwner'])->middleware('auth')->name('homepage.delete');
+Route::get('/restaurantResponseNote', [HomepageController::class,'answerNote'])->middleware('auth')->name('homepage.answer');
+
 
 
 

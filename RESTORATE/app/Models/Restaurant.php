@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Auth;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -59,6 +60,27 @@ class Restaurant extends Model
         
         return $this->where("id",$id)->with(["city","user","medias","reviews"])->get(); 
             
+    }
+
+    public function CheckIfAuthUserHaveRestaurateurRole()
+    {  
+        return auth()->user()->hasRole('Restaurateur')  ;
+
+       
+    }
+
+    public function CheckIfAuthUserHaveCustomerRole()
+    {  
+        return auth()->user()->hasRole('Client')  ;
+
+       
+    }
+
+    public function getTheRoleNameOfAuthUser()
+    {  
+        return auth()->user()  ;
+
+       
     }
     
    

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Exception;
 
 
 class User extends Authenticatable
@@ -54,4 +55,11 @@ public function reviews(){
     return $this->hasMany(Review::class,'user_id','id');
 
 }
+
+public function chekIfReviewBelongToClient($id){
+
+    if(auth()->user()!==$id) throw new Exception("Vous n'etest pas autoriser à faire cette action");
+
+}
+
 }
