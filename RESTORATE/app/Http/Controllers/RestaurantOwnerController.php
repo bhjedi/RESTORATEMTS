@@ -46,9 +46,9 @@ class RestaurantOwnerController extends Controller
          
     }
 
-    public function store(Request $request,Restaurant $restaurant)
+    public function store(Request $request,User $user)
     {
-        $this->checkIfRestaurateurRole($restaurant);
+        $this->checkIfRestaurateurRole($user);
 
         $request->validate([
             'name' => 'required|min:5',
@@ -68,17 +68,17 @@ class RestaurantOwnerController extends Controller
      *
      * @var array
      */
-    public function show(Restaurant $restaurant)
+    public function show(Restaurant $restaurant ,User $user)
     {
-        $this->checkIfRestaurateurRole($restaurant);
+        $this->checkIfRestaurateurRole($user);
 
         return view('restaurants.show', compact('restaurant'));
     }
 
 
-    public function edit(Restaurant $restaurant)
+    public function edit(Restaurant $restaurant,User $user)
     {
-        $this->checkIfRestaurateurRole($restaurant);
+        $this->checkIfRestaurateurRole($user);
         $cities= $this->RestaurantOwnerRepository->getCity();
 
        return view('restaurants.edit', compact('restaurant','cities'));
@@ -92,9 +92,9 @@ class RestaurantOwnerController extends Controller
      *
      * @var array
      */
-    public function update(Request $request, Restaurant $restaurant)
+    public function update(Request $request, Restaurant $restaurant,User $user)
     {
-        $this->checkIfRestaurateurRole($restaurant);
+        $this->checkIfRestaurateurRole($user);
 
         $request->validate([
             'name' => 'required|min:5',
@@ -107,9 +107,9 @@ class RestaurantOwnerController extends Controller
     }
    
    
-    public function destroy(Restaurant $restaurant)
+    public function destroy(Restaurant $restaurant, User $user)
     {
-        $this->checkIfRestaurateurRole($restaurant);
+        $this->checkIfRestaurateurRole($user);
 
         $this->RestaurantOwnerRepository->delete($restaurant->id);
        
