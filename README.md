@@ -15,7 +15,7 @@
        >composer install
        >npm install
        >npm run dev
-### Copy the example env file and make the required configuration changes in the .env file and in DB_DATABASE place your database name 
+#### Copy the example env file and make the required configuration changes in the .env file and in DB_DATABASE place your database name 
 ### Generate a new application key
 >php artisan key:generate
 ### Run the database migrations (Set the database connection in .env before migrating)
