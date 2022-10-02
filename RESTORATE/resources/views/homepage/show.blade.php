@@ -661,7 +661,7 @@ h2 {
       <h2 class = "product-title">Restaurant Details</h2>
       <a href="{{ route('homepage') }}" class = "product-link">Retour</a>
       <div class = "product-rating">
-      <span>{{$restaurant[0]->name}} </span> <br />
+      <span>{{$restaurant[0]->name}} ({{$restaurant[0]->city->name}}) </span> <br />
        
         <span>{{$restaurant[0]->reviews->avg('note')}}(10) Moyenne du restautant </span>
       </div>

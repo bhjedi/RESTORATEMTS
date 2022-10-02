@@ -76,6 +76,7 @@ class RestaurantOwnerController extends Controller
     public function show(Restaurant $restaurant)
     {
         $this->checkIfRestaurateurRole($restaurant);
+
       
 
         return view('restaurants.show', compact('restaurant'));
@@ -83,9 +84,11 @@ class RestaurantOwnerController extends Controller
     public function edit(Restaurant $restaurant)
     {
         $this->checkIfRestaurateurRole($restaurant);
+        $cities= $this->RestaurantOwnerRepository->getCity();
+
 
          
-        return view('restaurants.edit', compact('restaurant'));
+        return view('restaurants.edit', compact('restaurant','cities'));
 
     }
   
@@ -109,7 +112,7 @@ class RestaurantOwnerController extends Controller
   
         
         return redirect()->route('restaurants.index')
-        ->with('success', 'Contact Updated Successfully.');
+        ->with('success', 'Restaurant Updated Successfully.');
     }
    
    
@@ -119,6 +122,7 @@ class RestaurantOwnerController extends Controller
 
         $this->RestaurantOwnerRepository->delete($restaurant->id);
        
-        session()->flash('message', 'Post Deleted Successfully.');
+          return redirect()->route('restaurants.index')
+        ->with('success', 'Restaurant supprimer avec succes.');
     }
 }

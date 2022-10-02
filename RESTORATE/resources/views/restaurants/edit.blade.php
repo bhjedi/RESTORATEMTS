@@ -25,6 +25,14 @@
                     @error('name') <span class="text-red-500">{{ $message }}
                     </span>@enderror
                 </div>
+                <div class="mb-4">
+                <div class="custom-select" style="width:200px;">
+  <select  name="city_id">
+   @foreach($cities as $city) @if($city->id==$restaurant->city_id) <option selected value="{{$city->id}}">{{$city->name}}</option>@endif <option  value="{{$city->id}}">{{$city->name}}</option> @endforeach
+   
+  </select>
+</div>
+</div>
               
                 <div>
                     <button type="submit"

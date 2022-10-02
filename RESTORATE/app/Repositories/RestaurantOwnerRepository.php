@@ -124,6 +124,16 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
         
          return $this->model->getRestaurantDetail($id);
      }
+
+    
+
+     public function update(array $data, $id)
+     {
+       
+        $record =  $this->model->find($id);
+        $record->update($data);
+        return $record;
+     }
      public function answerNote(array $data)
      {
         $review=Review::find($data['review_id']);

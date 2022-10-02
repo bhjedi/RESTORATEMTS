@@ -28,6 +28,7 @@ class BaseRepository implements BaseRepositoryInterface
  
      public function update(array $data, $id)
      {
+       
         $record = $this->find($id);
         $record->update($data);
         return $record;
