@@ -14,7 +14,7 @@
             >git clone https://github.com/bhjedi/RESTORATEMTS.git
             
 ### Switch to the repo folder
-       >cd RESTORATE
+       >cd RESTORATEMTS/RESTORATE
        
 ### Install all the dependencies using composer
        >composer install
