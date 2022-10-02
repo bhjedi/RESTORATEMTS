@@ -37,6 +37,12 @@ class Restaurant extends Model
         return $this->with(["city","user","medias","reviews"])->latest()->paginate(10); 
             
     }
+    
+    public function getRestautByOwner(): LengthAwarePaginator
+    {
+        return $this->with(["city","user","medias","reviews"])->where("user_id",auth()->id())->latest()->paginate(10); 
+            
+    }
 
     public function getRestautFiltred(string $search=null): LengthAwarePaginator
     {

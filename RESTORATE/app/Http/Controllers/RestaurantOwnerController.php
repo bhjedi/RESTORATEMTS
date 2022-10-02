@@ -55,6 +55,7 @@ class RestaurantOwnerController extends Controller
         $request->validate([
             'name' => 'required|min:5',
             'images' => 'required',
+            'city_id'=>'required',
         ]);
   
         $restaurants= $this->RestaurantOwnerRepository->create($request->all());

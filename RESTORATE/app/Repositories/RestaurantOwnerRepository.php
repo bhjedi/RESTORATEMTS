@@ -28,7 +28,7 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
         
            
            
-                return $this->model->getRestaut();
+                return $this->model->getRestautByOwner();
             
 
 
@@ -77,7 +77,7 @@ class  RestaurantOwnerRepository extends BaseRepository implements RestaurantOwn
         $restaurant= $this->model->create([
                  'name' => $data["name"],
                 "user_id"=> Auth::id(),
-                 "city_id"=>1
+                 "city_id"=>$data["city_id"]
              ]);
             $this->SaveRestaurantImageInPublicFolder($data['images'],$restaurant->id);
 

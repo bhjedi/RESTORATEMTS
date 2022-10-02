@@ -28,6 +28,16 @@
                     @error('name') <span class="text-red-500">{{ $message }}
                     </span>@enderror
                 </div>
+                <div class="mb-4">
+                <div class="custom-select" style="width:200px;">
+  <select  name="city_id">
+    <option value="0" disabled selected>Selectionner une ville :</option>
+   @foreach($cities as $city) <option  value="{{$city->id}}">{{$city->name}}</option> @endforeach
+   
+  </select>
+</div>
+</div>
+
                
                 
        <div class="mb-4">

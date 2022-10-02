@@ -234,14 +234,14 @@ font-family: 'EB Garamond', serif;
 <div class="input-group">
     <span class="input-group-btn mr-5 mt-1">
         <button class="btn btn-info" type="submit" title="Search projects">
-            <span class="fas fa-search"></span>
+            <span class="fas fa-search">Chercher</span>
         </button>
     </span>
     <input type="text" class="form-control mr-2" name="search" placeholder="Search Restaurant" id="search">
     <a href="{{ route('homepage') }}" class=" mt-1">
         <span class="input-group-btn">
             <button class="btn btn-danger" type="button" title="Refresh page">
-                <span class="fas fa-sync-alt"></span>
+                <span class="fas fa-sync-alt">Refecher la page</span>
             </button>
         </span>
     </a>
